@@ -127,7 +127,7 @@ print(f"性別:{pgender} 保険金：{B:,}円 保険料：{P:,}円 年齢：{x}�
 for t in range(n):
     d_sum = 0
     l_sum = 0
-    for i in range(n-t):
+    for i in range(t,n):
         d_sum += v ** (i + 1/2) * d[x + t + i]
         l_sum += v ** i * l[x + t + i]
     future_expence = B * d_sum
