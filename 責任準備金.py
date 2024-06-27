@@ -117,26 +117,37 @@ if x + n > max_age:
     n = max_age - x
 
 future_expence = 0
-funter_income = 0
+future_income = 0
 
 
 v = 1 / (1 + rate)
 
 print(f"性別:{pgender} 保険金：{B:,}円 保険料：{P:,}円 年齢：{x}歳 保険期間：{n}年 利率：{rate:.6f}")
 
+P = P / B
+
+y = []
 for t in range(n):
     d_sum = 0
     l_sum = 0
     for i in range(t,n):
         d_sum += v ** (i + 1/2) * d[x + t + i]
         l_sum += v ** i * l[x + t + i]
-    future_expence = B * d_sum
+    future_expence = d_sum
     funter_income = P * l_sum
-    V = (future_expence - funter_income) / l[x + t]
-    print(f"{t=} {V=:,.0f}")
-    
+    V = (future_expence - future_income) / l[x + t]
+    print(f"{t=} {V=:,.5f}")
+    y.append(V)
 
+x = list(range(n))
 
+import matplotlib.pyplot as plt
 
+fig,ax = plt.subplots()
 
+ax.set_title('Reserve')
+ax.set_xlabel('t')
+ax.set_ylabel('V')
+ax.plot(x,y)
 
+plt.show()
